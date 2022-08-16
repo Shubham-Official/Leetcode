@@ -1,19 +1,19 @@
 //Link: https://leetcode.com/problems/steps-to-make-array-non-decreasing/
 
+Approach 1:
+
 //Explanation
 //dp[i] means the number of element A[i] can eat on its right.
 //More precisely, the number of rounds for an element A[i],
 //to completely eat whatever it can eat on the right of A[i],
 //if it is possible.
 
-Approach 1:
-
 class Solution {
 public:
     int totalSteps(vector<int>& nums) {
         int n = nums.size(), ans = 0;
         vector<int> v, dp(n);
-        
+
         for(int i = n-1; i >= 0; --i){
             while(!v.empty() and nums[i] > nums[v.back()]){
                 dp[i] = max(++dp[i], dp[v.back()]);
@@ -22,7 +22,7 @@ public:
             }
             v.push_back(i);
         }
-        
+
         return ans;
     }
 };
